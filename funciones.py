@@ -34,13 +34,13 @@ def BuscarFarmacias(localidad,datos):
 def BuscarFarmaciasRelacionadasTelefono(telefono,datos):
     farmacias=[]
     for farm in datos["directorios"]["directorio"]:
-        if farm["telefono"]["content"]==telefono:
+        if farm["telefono"]["content"].startswith(telefono):
             farmacias.append(farm["nombre"]["content"])
     return farmacias
 
 def BuscarFarmaciasRelacionadasCorreo(correo,datos):    
     farmacias=[]
     for farma in datos["directorios"]["directorio"]:
-        if farma["correo-electronico"]==correo:
+        if farma["correo-electronico"].startswith(correo):
             farmacias.append(farma["nombre"]["content"])
     return farmacias
