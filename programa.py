@@ -1,5 +1,5 @@
 import json
-from funcionesjson import *
+from funciones import *
 
 with open('proyecto.json', encoding='utf-8') as fichero:
     datos=json.load(fichero)
@@ -9,9 +9,8 @@ opcion=int(input("Elige una opción: "))
 while opcion!=6:
     
     if opcion==1:
-        print("El nombre de las farmacias son: \n")
         for info in ListarInformacion(datos):
-            print(info)
+            print(f"El nombre de la farmacia es {info[0]}, se encuentra en {info[1]} y su horario es {info[2]}")
         opcion=int(input("\nElige una opción: "))
     
     elif opcion==2:
@@ -37,3 +36,10 @@ while opcion!=6:
             for info in BuscarFarmaciasRelacionadasTelefono(telefono,datos):
                 print(info)
             opcion=int(input("\nElige una opción: "))
+
+    elif opcion==5:
+        print("Para una búsqueda más precisa intenta poner el nombre más exacto posible.")
+        nombre=input("Introduce el nombre de la farmacia que deseas buscar: ")
+        for info in EjercicioLibre(nombre,datos):
+            print(f"Los datos de contacto de la farmacia son {info[0]} y su número es {info[1]}, su horario es {info[2]} y su localización en OSM es: \n{info[3]}")
+        opcion=int(input("\nElige una opción: "))

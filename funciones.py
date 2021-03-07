@@ -2,8 +2,6 @@ def menu():
     menu=("Menu\n1.Listar la información\n2.Contar la información\n3.Buscar o filtrar información\n4.Buscar información relacionada\n5.Ejercicio Libre\n6.Salir")
     return(menu)
 
-# Ejercicio 1
-
 def ListarInformacion(datos):
     nombre=[]
     direccion=[]
@@ -17,15 +15,11 @@ def ListarInformacion(datos):
         informacion.append(infor)
     return informacion
 
-# Ejercicio 2
-
 def ContarFarmacias(datos):
     farmacias=[]
     for farm in datos["directorios"]["directorio"]:
         farmacias.append(farm)
     return len(farmacias)
-
-# Ejercicio 3
 
 def BuscarFarmacias(localidad,datos):
     try:
@@ -37,12 +31,10 @@ def BuscarFarmacias(localidad,datos):
     except:
         return "\nNo se ha encontrado ninguna farmacia en esa dirección."
 
-# Ejercicio 4
-
 def BuscarFarmaciasRelacionadasTelefono(telefono,datos):
     farmacias=[]
     for farm in datos["directorios"]["directorio"]:
-        if farm["telefono"]["content"].startswith(telefono):
+        if farm["telefono"]["content"]==telefono:
             farmacias.append(farm["nombre"]["content"])
     return farmacias
 
@@ -52,3 +44,23 @@ def BuscarFarmaciasRelacionadasCorreo(correo,datos):
         if farma["correo-electronico"].startswith(correo):
             farmacias.append(farma["nombre"]["content"])
     return farmacias
+
+def EjercicioLibre(nombre,datos):
+    correo=[]
+    horario=[]
+    telefono=[]
+    localizacion=[]
+    mapaa=[]
+    informacion=[]
+    for info in datos["directorios"]["directorio"]:
+        if info["nombre"]["content"].startswith(nombre):
+            correo.append(info["correo-electronico"])
+            telefono.append(info["telefono"]["content"])
+            horario.append(info["horario"])
+            coordenadas=info["localizacion"]["content"].split()
+            localizacion.append(coordenadas)
+            mapa=f"https://www.openstreetmap.org/#map=19/{localizacion[0][0]}/{localizacion[0][1]}"
+            mapaa.append(mapa)
+    for infor in zip(correo,telefono,horario,mapaa):
+        informacion.append(infor)
+    return informacion
