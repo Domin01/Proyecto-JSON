@@ -2,6 +2,8 @@ def menu():
     menu=("Menu\n1.Listar la información\n2.Contar la información\n3.Buscar o filtrar información\n4.Buscar información relacionada\n5.Ejercicio Libre\n6.Salir")
     return(menu)
 
+# Ejercicio 1
+
 def ListarInformacion(datos):
     nombre=[]
     direccion=[]
@@ -15,11 +17,15 @@ def ListarInformacion(datos):
         informacion.append(infor)
     return informacion
 
+# Ejercicio 2
+
 def ContarFarmacias(datos):
     farmacias=[]
     for farm in datos["directorios"]["directorio"]:
         farmacias.append(farm)
     return len(farmacias)
+
+# Ejercicio 3
 
 def BuscarFarmacias(localidad,datos):
     try:
@@ -30,6 +36,8 @@ def BuscarFarmacias(localidad,datos):
         return farmacia
     except:
         return "\nNo se ha encontrado ninguna farmacia en esa dirección."
+
+# Ejercicio 4
 
 def BuscarFarmaciasRelacionadasTelefono(telefono,datos):
     farmacias=[]
